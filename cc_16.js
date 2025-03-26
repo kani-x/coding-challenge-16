@@ -37,3 +37,35 @@ async function fetchProductsAsync() {
   function handleError(error) {
     console.error('An error occurred:', error.message);
   }
+
+// Task 4: "Display products in the DOM with name, price, and image"
+
+function displayProducts(products) {
+    const container = document.getElementById('product-container');
+    container.innerHTML = ''; // Clear previous content
+  
+    // Limit to first 5 products
+    const productsToShow = products.slice(0, 5);
+  
+    productsToShow.forEach((product) => {
+      const productElement = document.createElement('div');
+      productElement.className = 'product';
+      
+      productElement.innerHTML = `
+        <img src="${product.fields.image[0].url}" alt="${product.fields.name}" />
+        <h2>${product.fields.name}</h2>
+        <p>$${(product.fields.price / 100).toFixed(2)}</p>
+      `;
+      
+      container.appendChild(productElement);
+    });
+  }
+
+// Task 5: "Add reusable handleError function"
+
+function handleError(error) {
+    console.error('An error occurred:', error.message);
+    const container = document.getElementById('product-container');
+    container.innerHTML = `<p class="error">Failed to load products: ${error.message}</p>`;
+  }
+
