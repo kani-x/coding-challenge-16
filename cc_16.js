@@ -69,3 +69,8 @@ function handleError(error) {
     container.innerHTML = `<p class="error">Failed to load products: ${error.message}</p>`;
   }
 
+//  Task 6: "Trigger both fetch methods at script load"
+
+// Call both fetch methods when script loads
+fetchProductsThen();
+fetchProductsAsync();
